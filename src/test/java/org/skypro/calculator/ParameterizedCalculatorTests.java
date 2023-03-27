@@ -20,11 +20,41 @@ public class ParameterizedCalculatorTests {
                 Arguments.of(8, 2)
         );
     }
+
     @ParameterizedTest()
     @MethodSource("numsForTests")
-    void testPlus(Integer num1, Integer num2) {
-        calculatorService= new CalculatorServiceImpl();
-        String text = String.format("%s + %s = %s", num1, num2, num1 + num2);
+    void ParameterizedTestPlus(Integer num1, Integer num2) {
+        calculatorService = new CalculatorServiceImpl();
+        Integer result = num1 + num2;
+        String text = String.format("%s + %s = %s", num1, num2, result);
         assertEquals(calculatorService.plus(num1, num2), text);
     }
+
+    @ParameterizedTest()
+    @MethodSource("numsForTests")
+    void ParameterizedTestMinus(Integer num1, Integer num2) {
+        calculatorService = new CalculatorServiceImpl();
+        Integer result = num1 - num2;
+        String text = String.format("%s - %s = %s", num1, num2, result);
+        assertEquals(calculatorService.minus(num1, num2), text);
+    }
+
+    @ParameterizedTest()
+    @MethodSource("numsForTests")
+    void ParameterizedTestMultiply(Integer num1, Integer num2) {
+        calculatorService = new CalculatorServiceImpl();
+        Integer result = num1 * num2;
+        String text = String.format("%s * %s = %s", num1, num2, result);
+        assertEquals(calculatorService.multiply(num1, num2), text);
+    }
+
+    @ParameterizedTest()
+    @MethodSource("numsForTests")
+    void ParameterizedTestDivide(Integer num1, Integer num2) {
+        calculatorService = new CalculatorServiceImpl();
+        Integer result = num1 / num2;
+        String text = String.format("%s / %s = %s", num1, num2, result);
+        assertEquals(calculatorService.divide(num1, num2), text);
+    }
+
 }
