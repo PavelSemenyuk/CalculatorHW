@@ -5,17 +5,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
-
-    public void isZero(int num1, int num2) {
-        if (num1 == 0 || num2 == 0) {
-            throw new EmptyFieldException("На ноль делить нельзя!");
+    @Override
+    public void isZero(Integer num1, Integer num2) {
+        if (num1 != null && num2 == 0) {
+            throw new EmptyFieldException("На ноль делить нельзя");
         }
     }
 
+    @Override
     public void isNull(Integer num1, Integer num2) {
         if (num1 == null || num2 == null) {
-            throw new NullPointerException("Пустое значение недопустимо");
+            throw new NullPointerException("Пустое значение");
         }
+
     }
 
     @Override
