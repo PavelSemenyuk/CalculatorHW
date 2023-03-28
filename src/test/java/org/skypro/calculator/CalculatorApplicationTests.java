@@ -2,56 +2,77 @@ package org.skypro.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.skypro.calculator.controller.CalculatorController;
-import org.skypro.calculator.entity.Calculator;
 import org.skypro.calculator.exception.EmptyFieldException;
 import org.skypro.calculator.service.CalculatorService;
 import org.skypro.calculator.service.CalculatorServiceImpl;
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+
 class CalculatorApplicationTests {
-    CalculatorService calculatorService;
-    CalculatorController calculatorController;
+
+    private CalculatorService calculatorService;
 
     @BeforeEach
     public void test() {
         calculatorService = new CalculatorServiceImpl();
-        calculatorController = new CalculatorController(calculatorService);
     }
 
     @Test
     public void testPlus() {
-        String text = "2 + 2 = 4";
-        assertEquals(calculatorController.plus(2, 2), text);
+        String text = "3 + 2 = 5";
+        assertEquals(calculatorService.plus(3, 2), text);
+    }
+
+    @Test
+    public void testPlus2() {
+        String text = "9 + 1 = 10";
+        assertEquals(calculatorService.plus(9, 1), text);
     }
 
     @Test
     public void testMinus() {
         String text = "3 - 2 = 1";
-        assertEquals(calculatorController.minus(3, 2), text);
+        assertEquals(calculatorService.minus(3, 2), text);
+    }
+
+    @Test
+    public void testMinus2() {
+        String text = "11 - 1 = 10";
+        assertEquals(calculatorService.minus(11, 1), text);
     }
 
     @Test
     public void testMultiply() {
         String text = "3 * 2 = 6";
-        assertEquals(calculatorController.multiply(3, 2), text);
+        assertEquals(calculatorService.multiply(3, 2), text);
+    }
+
+    @Test
+    public void testMultiply2() {
+        String text = "5 * 5 = 25";
+        assertEquals(calculatorService.multiply(5, 5), text);
     }
 
     @Test
     public void testDivide() {
         String text = "6 / 2 = 3";
-        assertEquals(calculatorController.divide(6, 2), text);
+        assertEquals(calculatorService.divide(6, 2), text);
+    }
+
+    @Test
+    public void testDivide2() {
+        String text = "12 / 2 = 6";
+        assertEquals(calculatorService.divide(12, 2), text);
     }
 
     @Test
     public void testDivideWillThrowExceptionWhenDivideOnZero() {
         assertThrows(EmptyFieldException.class,
                 () -> {
-                    calculatorController.divide(0, 1);
+                    calculatorService.divide(1, 0);
                 });
     }
 
@@ -59,7 +80,7 @@ class CalculatorApplicationTests {
     public void testDivideWillThrowExceptionWhenDivideOnNull() {
         assertThrows(NullPointerException.class,
                 () -> {
-                    calculatorController.divide(1, null);
+                    calculatorService.divide(null, null);
                 });
     }
 

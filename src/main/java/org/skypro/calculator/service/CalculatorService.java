@@ -10,5 +10,9 @@ public interface CalculatorService {
 
     String divide(Integer num1, Integer num2);
 
+    void isNull(Integer num1, Integer num2);
+
+    void isZero(Integer num1, Integer num2);
+
 
 }
