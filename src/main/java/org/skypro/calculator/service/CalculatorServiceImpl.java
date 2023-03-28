@@ -23,7 +23,7 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public String plus(Integer num1, Integer num2) {
         isNull(num1, num2);
-        int result = num1 + num2;
+        Integer result = num1 + num2;
         return num1 + " + " + num2 + " = " + result;
     }
 
